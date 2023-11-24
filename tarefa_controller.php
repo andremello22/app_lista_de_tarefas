@@ -2,16 +2,21 @@
 require "../../app_lista_de_tarefas/tarefa.model.php";
 require "../../app_lista_de_tarefas/tarefa.service.php";
 require "../../app_lista_de_tarefas/conexao.php";
-echo '<pre>';
-print_r($_POST);
-echo '<pre>';
-$tarefa = new Tarefa();
-$tarefa->__set('tarefa', $_POST['tarefa']);
 
-$conexao = new Conexao();
+    $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
+    if ($acao == "iserir"){
+        
+       
+        $tarefa = new Tarefa();
+        $tarefa->__set('tarefa', $_POST['tarefa']);
 
-$tarefasevice = new TarefaService($conexao , $tarefa);
-echo '<pre>';
-print_r($tarefasevice);
-echo '<pre/>';
+        $conexao = new Conexao();
+
+        $tarefasevice = new TarefaService($conexao , $tarefa);
+        $tarefasevice->inserir();
+
+        header('location: nova_tarefa.php?inclusao=1');
+    } elseif($acao == 'recuperar'){
+        echo 'chegamos ate aqui';
+    }
 ?>

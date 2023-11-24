@@ -13,6 +13,10 @@ class TarefaService {
         $this->tarefa = $tarefa;
     }
 	public function inserir() { //create
+        $query = 'insert into tb_tarefas(tarefa)value(:tarefa)';
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(':tarefa', $this->tarefa->__get('tarefa'));
+        $stmt->execute();
 
 	}
 
