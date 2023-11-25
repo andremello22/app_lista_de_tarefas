@@ -17,6 +17,10 @@ require "../../app_lista_de_tarefas/conexao.php";
 
         header('location: nova_tarefa.php?inclusao=1');
     } elseif($acao == 'recuperar'){
-        echo 'chegamos ate aqui';
+        $tarefa = new Tarefa();
+        $conexao = new Conexao();
+
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefas = $tarefaService->recuperar();
     }
 ?>
